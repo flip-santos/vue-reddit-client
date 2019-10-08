@@ -10,16 +10,6 @@ Vue.config.productionTip = false
 
 Vue.use(VueApollo)
 
-const apolloClient = new ApolloClient({
-	link,
-	cache: new InMemoryCache(),
-	connectToDevTools: true
-})
-
-const apolloProvider = new VueApollo({
-	defaultClient: apolloClient
-})
-
 const httpLink = new HttpLink({
 	uri: 'http://localhost:5000'
 })
@@ -28,7 +18,19 @@ const middlewareLink = setContext(() => ({
   headers: {}
 }));
 
+const cache = new InMemoryCache();
+
 const link = middlewareLink.concat(httpLink)
+
+const apolloClient = new ApolloClient({
+	link,
+	cache,
+	connectToDevTools: true
+})
+
+const apolloProvider = new VueApollo({
+	defaultClient: apolloClient
+})
 
 new Vue({
 	provide: apolloProvider.provide(),
