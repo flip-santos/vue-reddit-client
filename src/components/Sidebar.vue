@@ -41,14 +41,35 @@
 </style>
 
 <script>
-	import payload from '../assets/payload.json'
+	// import payload from '../assets/payload.json'
+	import gql from 'graphql-tag';
+
 	export default {
 		name: 'Sidebar',
-		data() {
-			return {
-				articles: payload.data.children
+		
+		apollo: {
+			articles: {
+				query: gql`
+					query articles {
+						id,
+						permalink,
+						author,
+						created
+					}
+				`,
+				variables: {
+					// input: `03e082be-5e10-4351-a968-5f28d3e50565`
+				},
+				update: result => result.articles
 			}
 		},
+
+		data() {
+			return {
+				// articles: payload.data.children
+			}
+		},
+		
 		methods: {
 			get_UTC_hours(utc) {
 				let d = new Date(utc)
