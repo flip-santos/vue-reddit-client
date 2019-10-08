@@ -1,20 +1,29 @@
-# A simple Reddit client made with Vue.js
+# A simple client for Reddit made with Vue.js
 
-## To install
-
+## Project setup
 ```
-$ npm install
-```
-
-## To run
-```
-$ npm run dev
+yarn install
 ```
 
-## To test
+### Compiles and hot-reloads for development
 ```
-$npm test
+yarn run serve
 ```
 
-## To deploy
-... coming soon
+### Compiles and minifies for production
+```
+yarn run build
+```
+
+### Run your tests
+```
+yarn run test
+```
+
+### Lints and fixes files
+```
+yarn run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
