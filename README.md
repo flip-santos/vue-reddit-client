@@ -1,4 +1,4 @@
-# A simple client for Reddit made with Vue.js
+# A simple Reddit client made with Vue.js and GraphQL
 
 ## Project setup
 ```
@@ -7,22 +7,22 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn build
 ```
 
-### Run your tests
+### Run your unit tests
 ```
-yarn run test
+yarn test:unit
 ```
 
-### Lints and fixes files
+### Run your end-to-end tests
 ```
-yarn run lint
+yarn test:e2e
 ```
 
 ### Customize configuration
