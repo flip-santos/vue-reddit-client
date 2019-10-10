@@ -16,6 +16,8 @@
     "core-js": "^2.6.5",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
     "vue-apollo": "^3.0.0-rc.7"
   },

@@ -1,32 +1,42 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h1>A simple Reddit client made with Vue.js</h1>
-    <sidebar />
+    <!-- <h1>A simple Reddit client made with Vue.js</h1> -->
+    <div class="sidebar-wrapper">
+      <sidebar />
+    </div>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import Sidebar from './components/Sidebar.vue'
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld
     Sidebar
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
-  /*color: #2c3e50;*/
-  /*margin-top: 60px;*/
-}
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+  @import '@/assets/reset.scss';
+  @import '@/assets/variables.scss';
+
+  #app {
+    position: relative;
+    font-family: $default-font;
+    font-size: $font-size-sm;
+    color: $black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .sidebar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    // outline: solid 1px $red;
+  }
 </style>
