@@ -1,0 +1,11 @@
+#import "./SourceFragment.gql"
+
+fragment image on Image {
+  id,
+  source {
+  	...source
+  }
+	resolutions {
+		...source
+	}
+}
