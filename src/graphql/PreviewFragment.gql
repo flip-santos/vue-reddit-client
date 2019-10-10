@@ -1,0 +1,8 @@
+#import "./ImageFragment.gql"
+
+fragment preview on Preview {
+  enabled,
+  images {
+		...image
+	}
+}

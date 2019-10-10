@@ -5,20 +5,20 @@
 			<li 
 				class="sidebar-component__list-item"
 				v-for="article in articles"
-				:key="article.data.id">
+				:key="article.id">
 				<div class="sidebar-component__article-read">
-					{{ article.data.clicked }}
+					{{ article.clicked }}
 				</div>
-				<div class="sidebar-component__article-subreddit">r/{{ article.data.subreddit }}</div>
-				<div class="sidebar-component__article-author">u/{{ article.data.author }} • {{ get_UTC_hours(article.data.created) }} hours ago</div>
+				<div class="sidebar-component__article-subreddit">r/{{ article.subreddit }}</div>
+				<div class="sidebar-component__article-author">u/{{ article.author }} • {{ get_UTC_hours(article.created) }} hours ago</div>
 				<div class="sidebar-component__article-thumbnail">
-					<img class="sidebar-component__article-thumbnail-img" :src="article.data.thumbnail" :alt="article.data.title" />
+					<img class="sidebar-component__article-thumbnail-img" :src="article.thumbnail" :alt="article.title" />
 				</div>
 				<h3 class="sidebar-component__article-title">
-					{{ article.data.title }}
+					{{ article.title }}
 				</h3>
 				<div class="sidebar-component__article-actions">
-					<a href="#">{{ article.data.num_comments }} comments</a>
+					<a href="#">{{ article.num_comments }} comments</a>
 					<a href="#">Dismiss</a>
 				</div>
 			</li>
@@ -41,14 +41,16 @@
 </style>
 
 <script>
-	import payload from '../assets/payload.json'
+	import ARTICLE from '../graphql/Article.gql'
+	import gql from 'graphql-tag' 
+
 	export default {
 		name: 'Sidebar',
-		data() {
-			return {
-				articles: payload.data.children
-			}
-		},
+
+		apollo: {
+	    articles: ARTICLE
+	  },
+
 		methods: {
 			get_UTC_hours(utc) {
 				let d = new Date(utc)

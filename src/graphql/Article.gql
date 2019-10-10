@@ -1,0 +1,18 @@
+#import "./PreviewFragment.gql"
+
+query {
+	articles {
+		id,
+		permalink,
+		author, 
+		created,
+		num_comments,
+		thumbnail,
+		title,
+		visited,
+		preview {
+			...preview
+		},
+		subreddit
+	}
+}
