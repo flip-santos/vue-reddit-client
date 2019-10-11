@@ -6,18 +6,18 @@
 
 					<!-- {{loading}} -->
 	      	<!-- <input type="text" v-model.number="limit" /> -->
-	      	<button @click="after=data.getTopArticles[data.getTopArticles.length - 1].name">More!</button>
+	      	<button @click="after=getTopArticles[getTopArticles.length - 1].name">More!</button>
 
 					<!-- Loading -->
-		      <div v-if="is_loading" class="loading apollo">Loading...</div>
+		      <div v-if="loading" class="loading apollo">Loading...</div>
 
 		      <!-- Error -->
 		      <div v-else-if="error" class="error apollo">An error occured</div>
 
 		      <!-- Result -->
-		      <div v-else-if="data || !is_loading" class="result apollo">
+		      <div v-else-if="data || !loading" class="result apollo">
 						<ul class="sidebar-component__list">
-							<li class="sidebar-component__list-item" v-for="article in data.getTopArticles" :key="article.id">
+							<li class="sidebar-component__list-item" v-for="article in getTopArticles" :key="article.id">
 								<div class="sidebar-component__article-read">
 									{{ article.clicked }}
 								</div>
@@ -76,7 +76,7 @@
 		},
 
 		apollo: {
-		  articles: {
+		  getTopArticles: {
 		  	query: GET_TOP_ARTICLES,
 		    variables () {
 		      return {
