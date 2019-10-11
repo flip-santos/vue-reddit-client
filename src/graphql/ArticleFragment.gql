@@ -1,0 +1,17 @@
+#import "./PreviewFragment.gql"
+
+fragment article on Article {
+	id,
+	author, 
+	created,
+	name,
+	num_comments,
+	permalink,
+	preview {
+		...preview
+	},
+	subreddit
+	title,
+	thumbnail,
+	visited
+}
