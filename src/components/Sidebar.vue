@@ -17,7 +17,7 @@
 		      <!-- Result -->
 		      <div v-else-if="data || !loading" class="result apollo">
 						<ul class="sidebar-component__list">
-							<li class="sidebar-component__list-item" v-for="article in getTopArticles" :key="article.id">
+							<li class="sidebar-component__list-item" v-for="article in getTopArticles" :key="article.id" @click="loadArticle(article)">
 								<div class="sidebar-component__article-read">
 									{{ article.clicked }}
 								</div>
@@ -38,7 +38,7 @@
 		      </div>
 
 		      <!-- No result -->
-		      <!-- <div v-else class="no-result apollo">No result :(</div> -->
+		      <div v-else class="no-result apollo">No result :(</div>
 
 				</template>
 
@@ -49,7 +49,11 @@
 
 <style type="text/css">
 	.sidebar-component {}
-	.sidebar-component__list {}
+	.sidebar-component__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 	.sidebar-component__list-item {}
 	.sidebar-component__article-read {}
 	.sidebar-component__article-subreddit {}
@@ -63,17 +67,18 @@
 <script>
 	// import gql from 'graphql-tag'
 	import GET_TOP_ARTICLES from '../graphql/getTopArticles.gql'
+	import { mapState, mapActions } from 'vuex'
+
 
 	export default {
 		name: 'Sidebar',
 
-		data () {
-			return {
-				limit: 50,
-				before: '',
-				after: ''
-			}
-		},
+		computed: mapState({
+	    limit: state => state.limit,
+	    before: state => state.before,
+	    after: state => state.after,
+	    read_articles: state => state.read_articles,
+	  }),
 
 		apollo: {
 		  getTopArticles: {
@@ -89,6 +94,9 @@
 		},
 
 		methods: {
+			...mapActions([
+				'loadArticle',
+			]),
 			get_UTC_hours(utc) {
 				let d = new Date(utc)
 				return d.getHours() === 0 ? 12 : (d.getHours() > 12 ? d.getHours() - 12 : d.getHours())
