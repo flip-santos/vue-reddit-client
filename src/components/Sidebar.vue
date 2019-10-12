@@ -1,11 +1,18 @@
 <template>
 	<section class="sidebar-component">
 
-  	<button @click="updateAfter(get_filtered_articles[get_filtered_articles.length -1].name)">More!</button>
+  	<!-- <button v-if="get_filtered_articles.length > 0" @click="updateAfter(get_filtered_articles[get_filtered_articles.length -1].name)">More!</button> -->
+  	<!-- <button v-else @click="resetArticles">Reload!</button> -->
 
+  	<ul>
+    	<li>{{filtered_articles.length}} articles left</li>
+    	<li>{{removed_articles.length}} removed articles</li>
+    	<li>{{opened_articles.length}} articles viewed</li>
+    </ul>
+    
     <div v-if="!is_loading">
 			<ul class="sidebar-component__list">
-				<li class="sidebar-component__list-item" v-for="article in get_filtered_articles" :key="article.id">
+				<li class="sidebar-component__list-item" v-for="article in filtered_articles" :key="article.id">
 					<div class="sidebar-component__article-read">
 						{{ article.clicked }}
 					</div>
@@ -25,7 +32,11 @@
 				</li>
 			</ul>
     </div>
-    <div v-else>Loading...</div>
+    <div v-else>
+    	Loading...
+    </div>
+
+    
 
 	</section>
 </template>
@@ -55,23 +66,36 @@
 	// import gql from 'graphql-tag'
 	import GET_TOP_ARTICLES from '../graphql/getTopArticles.gql'
 	import { mapState, mapActions, mapMutations } from 'vuex'
-
+	import _ from 'lodash'
 
 	export default {
 		name: 'Sidebar',
 
+		data() {
+			return {
+				fetched_articles: [],
+			}
+		},
+
 		computed: {
-			...mapState({
-		    limit: state => state.limit,
-		    before: state => state.before,
-		    after: state => state.after,
-		    read_articles: state => state.read_articles,
-		  }),
+		 ...mapState([
+		 		'limit',
+				'before',
+				'after',
+				'removed_articles',
+				'opened_articles',
+		 	]),
 		  is_loading() {
-		  	return Boolean(this.$apolloData.loading)
+		  	if(this.$apolloData) {
+		  		return Boolean(this.$apolloData.loading)
+		  	}
 		  },
-		  get_filtered_articles() {
-		  	return this.getTopArticles.filter(item => this.read_articles.indexOf(item.id) === -1)
+		  filtered_articles() {
+		  	return _.filter(this.fetched_articles, (item) => {
+	    		if(this.removed_articles.indexOf(item.id) === -1) {
+	    			return item
+	    		}
+	    	})
 		  }
 		},
 
@@ -84,6 +108,10 @@
 	          before: this.before,
 						after: this.after
 		      }
+		    },
+		    update (data) {
+		    	this.fetched_articles = data.getTopArticles		    	
+		    	return data
 		    }
 		  }
 		},
@@ -93,12 +121,14 @@
 				'loadArticle',
 				'updateAfter',
 				'removeArticle',
+				'resetArticles',
 			]),
 			get_UTC_hours(utc) {
 				let d = new Date(utc)
 				return d.getHours() === 0 ? 12 : (d.getHours() > 12 ? d.getHours() - 12 : d.getHours())
 			},
-		}
+		},
+
 	}
 </script>
 

@@ -22,6 +22,7 @@
         </md-toolbar>
         
         <md-menu md-size="small">
+          
           <md-button md-menu-trigger>{{limit}}</md-button>
           <md-menu-content>
             <md-menu-item @click="updateLimit(1)">1</md-menu-item>
@@ -85,7 +86,6 @@
         'toggleMenu',
         'updateLimit',
         'updateAfter',
-        'updateBefore',
       ]),
     },
   }
