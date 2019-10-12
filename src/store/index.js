@@ -42,6 +42,9 @@ export default new Vuex.Store({
   	},
   	
   	[REMOVE_ARTICLE] (state, id) {
+      if(state.current_article.id === id) {
+        state.current_article = {}
+      }
   		state.read_articles.push(id)
   	},
 
@@ -55,6 +58,15 @@ export default new Vuex.Store({
     },
     updateLimit (context, limit) {
       context.commit(UPDATE_LIMIT, limit)
+    },
+    updateBefore (context, name) {
+      context.commit(UPDATE_BEFORE, name)
+    },
+    updateAfter (context, name) {
+      context.commit(UPDATE_AFTER, name)
+    },
+    removeArticle(context, id) {
+      context.commit(REMOVE_ARTICLE, id)
     },
   },
 })

@@ -84,7 +84,8 @@
       ...mapActions([
         'toggleMenu',
         'updateLimit',
-        
+        'updateAfter',
+        'updateBefore',
       ]),
     },
   }
