@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.f4421f4bcc348552aec06536c693b379.js"
+  "/precache-manifest.31fd9dd62a8a371830d28153f94095a7.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-reddit-client2"});
