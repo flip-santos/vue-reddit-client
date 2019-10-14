@@ -141,7 +141,7 @@
 	}
 	.sidebar-component__spinner {
 		position: relative;
-		min-height: 100vh;
+		height: calc(100vh - 70px);
 	}
 </style>
 
