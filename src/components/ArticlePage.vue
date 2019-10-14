@@ -32,7 +32,8 @@
 		&__title {
 			color: $pink;
 			font-size: 36px;
-      line-height: 40px
+      line-height: 40px;
+      margin-top: 0;
 		}
     a {
       color: $pink !important;
