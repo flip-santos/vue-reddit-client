@@ -2,39 +2,27 @@
   <div class="page-container">
     
     <md-app>
-      
-      <!-- <md-app-toolbar class="md-primary">
+
+      <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menu_visible">
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">A simple Reddit client made with Vue.js and GraphQL</span>
-      </md-app-toolbar> -->
+      </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menu_visible" md-persistent="full">
+      <md-app-drawer :md-active.sync="menu_visible" md-persistent="full" :md-swipeable="true">
         
         <md-toolbar class="sidebar-toolbar" md-elevation="0">
           <span class="sidebar-title">Top {{limit}} Reddit Articles</span>
-
-          <!-- <div class="md-toolbar-section-end">
+          <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenu">
               <md-icon>keyboard_arrow_left</md-icon>
             </md-button>
-          </div> -->
+          </div>
         </md-toolbar>
         
-        <!-- <md-menu class="sidebar-options" md-size="small">
-          
-          <md-button md-menu-trigger>{{limit}}</md-button>
-          <md-menu-content>
-            <md-menu-item @click="updateLimit(1)">1</md-menu-item>
-            <md-menu-item @click="updateLimit(5)">5</md-menu-item>
-            <md-menu-item @click="updateLimit(10)">10</md-menu-item>
-            <md-menu-item @click="updateLimit(25)">20</md-menu-item>
-            <md-menu-item @click="updateLimit(50)">50</md-menu-item>
-          </md-menu-content>
-        </md-menu> -->
-
         <sidebar class="sidebar-component" />
+        
       </md-app-drawer>
 
       <md-app-content>
@@ -92,9 +80,9 @@
   }
 
   .md-drawer {
-    background-color: $pink;
-    width: 230px;
-    max-width: calc(100vw - 125px);
+    // background-color: $pink;
+    // width: 230px;
+    // max-width: calc(100vw - 125px);
   }
   .sidebar-options {
     position: relative;
@@ -122,5 +110,11 @@
       font-size: 36px;
       color: $pink;
     }
+  }
+  .toggle-menu-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: solid 1px;
   }
 </style>
