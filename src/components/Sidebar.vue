@@ -111,7 +111,6 @@
 		width: 100%;
 		height: 100px;
 		cursor: pointer;
-		// border-radius: 4px;
 	}
 	
 	.sidebar-component__article-title {

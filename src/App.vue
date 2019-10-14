@@ -38,31 +38,12 @@
       </md-app-drawer>
 
       <md-app-content>
-        <template v-if="current_article && current_article.preview">
-          <div>
-            <h1>{{current_article.title}}</h1>
-            <ul>
-              <li>{{current_article.id}}</li>
-              <li>{{current_article.author }}</li>
-              <li>{{current_article.created}}</li>
-              <li>{{current_article.name}}</li>
-              <li>{{current_article.num_comments}}</li>
-              <li>{{current_article.permalink}}</li>
-              <li>{{current_article.preview.enabled}}</li>
-              <li v-for="image in current_article.preview.images" :key="image.id">
-                <img :src="image.source.url" :alt="image.source.url">
-                <ul>
-                  <li>Width: {{image.source.width}}</li>
-                  <li>Height: {{image.source.height}}</li>
-                </ul>
-              </li>
-              
-              <li>{{current_article.subreddit}}</li>
-              <li>{{current_article.thumbnail}}</li>
-              <li>{{current_article.visited}}</li>
-            </ul>
-          </div>
-        </template>
+        
+        <article-page v-if="current_article && current_article.preview" :article="current_article" />
+        <section v-else class="select-article">
+          <h2>Please, select an article...</h2>
+        </section>
+        
       </md-app-content>
     </md-app>
   </div>
@@ -71,11 +52,13 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import Sidebar from './components/Sidebar.vue'
+  import ArticlePage from './components/ArticlePage.vue'
   
   export default {
     name: 'App',
     components: {
-      Sidebar
+      Sidebar,
+      ArticlePage,
     },
     computed: mapState({
       limit: state => state.limit,
@@ -96,11 +79,11 @@
   @import './styles/variables';
   @import "~vue-material/dist/theme/engine"; // Import the theme engine
   @include md-register-theme("default", (
-    primary: $dark-gray, // The primary color of your application
-    accent: $pink // The accent or secondary color
+    primary: $dark-gray,
+    accent: $pink
   ));
-  // @import "~vue-material/dist/theme/all"; // Apply the theme
-  @import "~vue-material/dist/components/MdProgress/theme";
+  @import "~vue-material/dist/theme/all"; // Apply the theme
+  @import "~vue-material/dist/components/MdButton/theme";
 
   .md-app {
     min-height: 100vh;
@@ -129,5 +112,15 @@
     font-size: $font-lg;
     font-weight: $font-bold;
     user-select: none;
+  }
+  .select-article {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      font-size: 36px;
+      color: $pink;
+    }
   }
 </style>
