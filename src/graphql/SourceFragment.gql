@@ -1,0 +1,5 @@
+fragment source on Source {
+  url,
+	width,
+	height
+}

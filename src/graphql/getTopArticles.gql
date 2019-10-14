@@ -1,0 +1,7 @@
+#import "./ArticleFragment.gql"
+
+query getTopArticles ($limit: Int!, $before: String, $after: String) {
+  getTopArticles (limit: $limit, before: $before, after: $after) {
+  	...article
+  }
+}

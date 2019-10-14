@@ -1,54 +1,36 @@
 {
-  "name": "vue-reddit-client",
+  "name": "vue-reddit-client2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.6.3",
-    "apollo-client": "^2.6.4",
-    "apollo-link": "^1.2.13",
-    "apollo-link-context": "^1.0.19",
-    "apollo-link-http": "^1.5.16",
     "core-js": "^2.6.5",
-    "graphql": "^14.5.8",
-    "graphql-tag": "^2.10.1",
+    "lodash": "^4.17.15",
+    "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
-    "vue-apollo": "^3.0.0-rc.7"
+    "vue-apollo": "^3.0.0-beta.11",
+    "vue-material": "^1.0.0-beta-11",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "@vue/cli-plugin-babel": "^3.12.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.12.0",
+    "@vue/cli-plugin-pwa": "^3.12.0",
+    "@vue/cli-plugin-unit-jest": "^3.12.0",
+    "@vue/cli-service": "^3.12.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "graphql-tag": "^2.9.0",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-apollo": "^0.21.1",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  }
 }
