@@ -3,25 +3,26 @@
     
     <md-app>
       
-      <md-app-toolbar class="md-primary">
+      <!-- <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menu_visible">
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">A simple Reddit client made with Vue.js and GraphQL</span>
-      </md-app-toolbar>
+      </md-app-toolbar> -->
 
       <md-app-drawer :md-active.sync="menu_visible" md-persistent="full">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          <span>Top {{limit}} Reddit Articles</span>
+        
+        <md-toolbar class="sidebar-toolbar" md-elevation="0">
+          <span class="sidebar-title">Top {{limit}} Reddit Articles</span>
 
-          <div class="md-toolbar-section-end">
+          <!-- <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenu">
               <md-icon>keyboard_arrow_left</md-icon>
             </md-button>
-          </div>
+          </div> -->
         </md-toolbar>
         
-        <md-menu md-size="small">
+        <!-- <md-menu class="sidebar-options" md-size="small">
           
           <md-button md-menu-trigger>{{limit}}</md-button>
           <md-menu-content>
@@ -31,9 +32,9 @@
             <md-menu-item @click="updateLimit(25)">20</md-menu-item>
             <md-menu-item @click="updateLimit(50)">50</md-menu-item>
           </md-menu-content>
-        </md-menu>
+        </md-menu> -->
 
-        <sidebar />
+        <sidebar class="sidebar-component" />
       </md-app-drawer>
 
       <md-app-content>
@@ -92,12 +93,41 @@
 </script>
 
 <style lang="scss" scoped>
+  @import './styles/variables';
+  @import "~vue-material/dist/theme/engine"; // Import the theme engine
+  @include md-register-theme("default", (
+    primary: $dark-gray, // The primary color of your application
+    accent: $pink // The accent or secondary color
+  ));
+  // @import "~vue-material/dist/theme/all"; // Apply the theme
+  @import "~vue-material/dist/components/MdProgress/theme";
+
   .md-app {
     min-height: 100vh;
+    color: $black;
+    font-smooth: auto;
   }
 
   .md-drawer {
+    background-color: $pink;
     width: 230px;
     max-width: calc(100vw - 125px);
+  }
+  .sidebar-options {
+    position: relative;
+    z-index: 2;
+  }
+  .sidebar-component {
+    position: relative;
+    z-index: 1;    
+  }
+  .sidebar-toolbar {
+    background-color: $pink;
+  }
+  .sidebar-title {
+    color: $pink;
+    font-size: $font-lg;
+    font-weight: $font-bold;
+    user-select: none;
   }
 </style>

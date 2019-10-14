@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 // Default State values
 const DEFAULT_STATE = {
-  limit: 3,
+  limit: 50,
   before: '',
   after: '',
   current_article: {},
