@@ -5,14 +5,13 @@
 - [x] Global style
 - Sidebar style
 	* [x] loading list
-	* [ ] empty article
+	* [x] empty article
 	* [x] empty list
 	* options
-		- [ ] remove all articles
+		- [x] remove all articles
 		- [x] reload
-		- [ ] show removed articles
 - Article component
-	* [ ] finish touches
+	* [x] finish touches
 - [x] Store
 - [x] Deploy Reddit api GraphQL wrapper
 
